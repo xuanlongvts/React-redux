@@ -46,6 +46,11 @@
                 console.log('next STATE == ', nextState);
                 console.groupEnd('REDUCER');
                 return nextState;
+            case 'INCREMENT':
+                nextState.count = currentState.count + 1;
+                console.log('next STATE == ', nextState);
+                console.groupEnd('REDUCER');
+                return nextState;
             default:
                 return nextState;
         }
@@ -62,9 +67,15 @@
             });
     document.getElementById('incrementAsync')
             .addEventListener('click', function () {
-               setTimeout(function () {
+               /*setTimeout(function () {
                    valueEl.innerHTML = parseInt(valueEl.innerHTML) + 1;
-               }, 500);
+               }, 500);*/
+               var action = { type: 'INCREMENT' };
+                console.log('');
+                console.group('store.dispatch(action)');
+                console.info('ACTION == ', action);
+                store.dispatch(action);
+                console.groupEnd('store.dispatch(action)');
             });
 
 
