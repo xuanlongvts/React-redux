@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 import TrackList from './components/TrackList';
+import {configureStore} from './store';
+import * as actions from './actions';
 
 const tracks = [
     {
         id: 1,
-        title: 'Sầu tím thiệp hồng'
+        title: 'Em của ngày hôm qua'
     },
     {
         id: 2,
@@ -13,7 +16,12 @@ const tracks = [
     }
 ];
 
+const store = configureStore();
+store.dispatch(actions.setTracks(tracks));
+
 ReactDOM.render(
-    <TrackList tracks={tracks}/>,
+    <Provider store={store}>
+        <TrackList />
+    </Provider>,
     document.getElementById('app')
 );
