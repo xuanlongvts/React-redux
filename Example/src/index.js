@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TractList from './components/TractList';
+import TrackList from './components/TrackList';
 
 const tracks = [
     {
@@ -14,6 +14,6 @@ const tracks = [
 ];
 
 ReactDOM.render(
-    <TractList tracts={tracks}/>,
+    <TrackList tracks={tracks}/>,
     document.getElementById('app')
 );
