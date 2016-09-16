@@ -70,6 +70,9 @@ function todoApp(state, action) {
                     items: []
                 }
             });
+
+        default:
+            return state;
     }
 }
 
@@ -141,13 +144,13 @@ class TodoList extends React.Component{
     render(){
         var items = [];
 
-        this.state.items.forEach((items, index) => {
+        this.state.items.forEach((item, index) => {
             items.push(
                 <TodoItem
                     key={index}
                     index={index}
-                    message={items.message}
-                    completed={items.completed}
+                    message={item.message}
+                    completed={item.completed}
                 />
             );
         });
