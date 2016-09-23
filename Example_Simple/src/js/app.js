@@ -13,7 +13,7 @@ function addTodo(message) {
         type: 'ADD_TODO',
         message: message,
         completed: false
-    };
+    }
 }
 
 function completeTodo(index) {
@@ -33,29 +33,22 @@ function deleteTodo(index) {
 function clearTodo() {
     return {
         type: 'CLEAR_TODO'
-    };
+    }
 }
 
 function todoApp(state, action) {
     switch (action.type){
         case 'ADD_TODO':
-            var items = [].concat(state.todo.items);
-            return Object.assign({}, state, {
-                todo: {
-                    items: items.concat([{
-                        message: action.message,
-                        completed: false
-                    }])
-                }
+            var newState = Object.assign({}, state);
+            newState.todo.items.push({
+                message: action.message,
+                completed: false
             });
+            return newState;
         case 'COMPLETE_TODO':
-            var items = [].concat(state.todo.items);
-            items[action.index].completed = true;
-            return Object.assign({}, state, {
-                todo: {
-                    items: items
-                }
-            });
+            var newState = Object.assign({}, state);
+            newState.todo.items[action.index].completed = true;
+            return newState;
         case 'DELETE_TODO':
             var items = [].concat(state.todo.items);
             items.splice(action.index, 1);
@@ -70,7 +63,6 @@ function todoApp(state, action) {
                     items: []
                 }
             });
-
         default:
             return state;
     }
@@ -83,20 +75,24 @@ class AddTodoForm extends React.Component{
         message: ''
     };
 
-    onFormSumit(e){
+    onFormSubmit(e){
         e.preventDefault();
         store.dispatch(addTodo(this.state.message));
-        this.setState({ message: '' });
+        this.setState({
+            message: ''
+        });
     }
 
     onMessageChanged(e){
         var message = e.target.value;
-        this.setState({ message: message });
+        this.setState({
+            message: message
+        })
     }
 
     render(){
-        return (
-            <form onSubmit={this.onFormSumit.bind(this)}>
+        return(
+            <form onSubmit={this.onFormSubmit.bind(this)}>
                 <input type="text" placeholder="Todo..." onChange={this.onMessageChanged.bind(this)} value={this.state.message} />
                 <input type="submit" value="Add" />
             </form>
@@ -105,23 +101,22 @@ class AddTodoForm extends React.Component{
 }
 
 class TodoItem extends React.Component{
+
     onDeleteClick(){
         store.dispatch(deleteTodo(this.props.index));
     }
 
-    onCompletedClick(){
+    onCompleteClick(){
         store.dispatch(completeTodo(this.props.index));
     }
 
     render(){
-        return(
+        return (
             <li>
-                <a href="javascript:;" onClick={this.onCompletedClick.bind(this)}
-                    style={{textDecoration: this.props.completed? 'line-through': 'none'}}
-                >
+                <a href="javascript:;" onClick={this.onCompleteClick.bind(this)} style={{textDecoration: this.props.completed?'line-through':'none'}}>
                     {this.props.message.trim()}
                 </a>
-                <a href="javascript:;" onClick={this.onDeleteClick.bind(this)} style={{textDecoration: 'none'}} >[x]</a>
+                <a href="javascript:;" onClick={this.onDeleteClick.bind(this)} style={{textDecoration: 'none'}}>[x]</a>
             </li>
         );
     }
@@ -133,12 +128,16 @@ class TodoList extends React.Component{
     };
 
     componentWillMount(){
-        store.subscribe(() => {
+        store.subscribe(()=>{
             var state = store.getState();
             this.setState({
                 items: state.todo.items
             });
         });
+    }
+
+    onClearAll(){
+        store.dispatch(clearTodo());
     }
 
     render(){
@@ -157,23 +156,24 @@ class TodoList extends React.Component{
 
         if(!items.length){
             return(
-                <p>
-                    <i>Please add something to do.</i>
-                </p>
+                <p><i>Please add something to do.</i></p>
             );
         }
 
-        return(
-            <ol>{items}</ol>
-        )
+        return (
+            <div className="box-list">
+                <ol>{items}</ol>
+                <a href="javascript:;" onClick={this.onClearAll.bind(this)}>Clear all</a>
+            </div>
+        );
     }
 }
 
 ReactDOM.render(
     <div className="wrapper">
         <h1>Todo</h1>
-        <AddTodoForm />
-        <TodoList />
+        <AddTodoForm/>
+        <TodoList/>
     </div>,
     document.getElementById('container')
 );
