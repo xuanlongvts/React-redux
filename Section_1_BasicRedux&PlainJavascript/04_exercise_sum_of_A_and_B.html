@@ -23,10 +23,12 @@
 
     function render() {
         var state = store.getState();
+        console.log(state.count);
         document.getElementById('value').innerHTML = state.count;
         document.getElementById('value2').innerHTML = state.sum;
     }
     store.subscribe(render);
+
     render();
 
     function counter(currentState, action) {
@@ -43,10 +45,10 @@
 
         switch (action.type){
             case 'DECREMENT':
-                nextState = currentState.count - 1;
+                nextState.count = currentState.count - 1;
                 return nextState;
             case 'INCREMENT':
-                nextState = currentState.count + 1;
+                nextState.count = currentState.count + 1;
                 return nextState;
             case 'SUM':
                 nextState.sum = parseInt(action.a) + parseInt(action.b);
