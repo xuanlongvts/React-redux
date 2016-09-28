@@ -8,7 +8,7 @@
 <h2>Redux basic example</h2>
 <div>
     <p>
-        Clicked: <span id="value">0</span> times
+        Clicked: <span id="value"></span> times
         <button id="decrement">Decrease</button>
         <button id="incrementAsync">Increment async</button>
     </p>
@@ -19,16 +19,16 @@
         valElement.innerHTML = 0;
     }
     render();
-    document.getElementById('decrement')
-            .addEventListener('click', function () {
-                valElement.innerHTML = valElement.innerHTML - 1;
-            });
-    document.getElementById('incrementAsync')
-            .addEventListener('click', function () {
-                setTimeout(function () {
-                    valElement.innerHTML = parseInt(valElement.innerHTML) + 1;
-                }, 500);
-            })
+
+    document.getElementById('decrement').addEventListener('click', function () {
+        valElement.innerHTML = valElement.innerHTML - 1;
+    });
+
+    document.getElementById('incrementAsync').addEventListener('click', function () {
+        setTimeout(function () {
+            valElement.innerHTML = parseInt(valElement.innerHTML) + 1;
+        }, 500);
+    })
 </script>
 </body>
 </html>
