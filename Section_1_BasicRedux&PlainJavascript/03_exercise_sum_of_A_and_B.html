@@ -19,17 +19,18 @@
 </div>
 <script language="javascript">
     var store = Redux.createStore(counter);
-
     function render() {
         var state = store.getState();
         document.getElementById('value').innerHTML = state.count;
         document.getElementById('value2').innerHTML = 3;
     }
-    store.subscribe(render);
     render();
+    store.subscribe(render);
 
     function counter(currentState, action) {
-        var DEFAULT_STATE = { count: 0 };
+        var DEFAULT_STATE = {
+            count: 0
+        };
         var nextState = Object.assign({}, currentState);
         if(currentState === undefined){
             nextState = DEFAULT_STATE;
@@ -40,7 +41,7 @@
             case 'DECREMENT':
                 nextState.count = currentState.count - 1;
                 return nextState;
-            case 'INCREMENT':
+            case 'INCECREMENT':
                 nextState.count = currentState.count + 1;
                 return nextState;
             default:
@@ -48,22 +49,21 @@
         }
     }
 
-    document.getElementById('decrement')
-            .addEventListener('click', function () {
-                var action = { type: 'DECREMENT' };
-                store.dispatch(action);
-            });
-    document.getElementById('incrementAsync')
-            .addEventListener('click', function () {
-                var action = { type: 'INCREMENT' };
-                store.dispatch(action);
-            });
-    document.getElementById('sum')
-            .addEventListener('click', function () {
-                var a = document.getElementById('a').value;
-                var b = document.getElementById('b').value;
-                document.getElementById('value2').innerHTML = parseInt(a) + parseInt(b);
-            })
+    document.getElementById('decrement').addEventListener('click', function () {
+        var action = { type: 'DECREMENT'};
+        store.dispatch(action);
+    });
+
+    document.getElementById('incrementAsync').addEventListener('click', function () {
+        var action = { type: 'INCECREMENT'};
+        store.dispatch(action);
+    });
+
+    document.getElementById('sum').addEventListener('click', function () {
+        var a = document.getElementById('a').value;
+        var b = document.getElementById('b').value;
+        document.getElementById('value2').innerHTML = parseInt(a) + parseInt(b);
+    });
 
 </script>
 </body>
