@@ -14,9 +14,71 @@
     </p>
 </div>
 <script language="javascript">
+    console.group('Redux.createStore(REDUCER)');
+    var store = Redux.createStore(counter);
+    console.groupEnd('Redux.createStore(REDUCER)');
 
+    var valueEl = document.getElementById('value');
+    function render() {
+        console.group('render()');
+            console.log('STATE == stote.getState() ==', store.getState());
+            valueEl.innerHTML = store.getState().count;
+        console.groupEnd('render()');
+    }
+    render();
+    store.subscribe(render);
 
+    function counter(currentState, action) {
+        var DEFAULT_STATE = {
+            count: 0
+        };
+        console.group('REDUCER');
+        var nextState = Object.assign({}, currentState);
+        console.log('current STATE == ', currentState);
 
+        if(currentState === undefined){
+            nextState = DEFAULT_STATE;
+            console.log('next STATE == ', nextState);
+            console.groupEnd('REDUCER');
+            return nextState;
+        }
+
+        switch (action.type){
+            case 'DECREMENT':
+                nextState.count = currentState.count - 1;
+                    console.log('next STATE == ', nextState);
+                    console.groupEnd('REDUCER');
+                return nextState;
+            case 'INCREMENT':
+                nextState.count = currentState.count + 1;
+                    console.log('next STATE == ', nextState);
+                    console.groupEnd('REDUCER');
+                return nextState;
+            default:
+                return nextState;
+        }
+    }
+
+    document.getElementById('decrement').addEventListener('click', function () {
+        var action = {
+            type: 'DECREMENT'
+        };
+        console.log(' ');
+        console.group('store.dispatch(action)');
+        console.info('ACTION == ', action);
+        store.dispatch(action);
+        console.groupEnd('store.dispatch(action)');
+    });
+    document.getElementById('incrementAsync').addEventListener('click', function () {
+        var action = {
+            type: 'INCREMENT'
+        };
+        console.log(' ');
+        console.group('store.dispatch(action)');
+        console.info('ACTION == ', action);
+        store.dispatch(action);
+        console.groupEnd('store.dispatch(action)');
+    });
 </script>
 </body>
 </html>
