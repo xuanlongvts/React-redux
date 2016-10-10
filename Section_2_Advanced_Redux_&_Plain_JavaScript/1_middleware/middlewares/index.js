@@ -1,12 +1,7 @@
 const logger = function (store) {
     return function (next) {
         return function (action) {
-            console.group('logger');
-            console.log('currentState == ', store.getState());
-            console.log('next(action) // action == ', action);
             next(action);
-            console.log('nextState == ', store.getState());
-            console.groupEnd('logger');
         }
     }
 };
@@ -18,10 +13,7 @@ const crashReporter = function (store) {
                 next(action);
             }
             catch (err){
-                console.group('crashReporter');
-                console.error('error happen with action ==', action);
-                console.error(err);
-                console.groupEnd('crashReporter');
+                console.log(err);
             }
         }
     }

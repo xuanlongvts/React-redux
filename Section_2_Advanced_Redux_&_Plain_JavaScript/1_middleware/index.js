@@ -2,19 +2,18 @@ var store = Redux.createStore(combineReducer, Redux.applyMiddleware(logger, cras
 
 function render() {
     var state = store.getState();
-
-    console.log('state = ', state);
-
     document.getElementById('value').innerHTML = state.count.result;
     document.getElementById('value2').innerHTML = state.sum;
 
+    var getStatus = document.getElementById('status');
+
     if(state.count.loading){
-        document.getElementById('status').innerHTML = 'is loading...';
+        getStatus.innerHTML = 'is loading...';
     }
     else{
-        document.getElementById('status').innerHTML = 'loaded';
+        getStatus.innerHTML = 'loaded';
     }
 }
 
-store.subscribe(render);
 render();
+store.subscribe(render);

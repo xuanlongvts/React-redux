@@ -3,7 +3,9 @@ function counter(currentState, action) {
         result: 0,
         loading: false
     };
+
     var nextState = Object.assign({}, currentState);
+
     if(currentState === undefined){
         nextState = DEFAULT_STATE;
         return nextState;

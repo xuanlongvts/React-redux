@@ -24,6 +24,8 @@ var asyncIncrease = function (dispatch, state) {
     });
 
     _fakeServerApi.increaseCount(state.count.result, function (data) {
-        dispatch({type: 'INCREMENT'});
-    })
+        dispatch({
+            type: 'INCREMENT'
+        });
+    });
 };
