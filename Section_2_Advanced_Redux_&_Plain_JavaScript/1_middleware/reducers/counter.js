@@ -14,7 +14,8 @@ function counter(currentState, action) {
             nextState.result = currentState.result - 1;
             return nextState;
         case 'INCREMENT':
-            nextState.result = currentState. result + 1;
+            nextState.result = currentState.result + 1;
+            nextState.loading = false;
             return nextState;
         case 'INCREMENT_LOADING':
             nextState.loading = true;

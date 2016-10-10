@@ -2,6 +2,9 @@ var store = Redux.createStore(combineReducer, Redux.applyMiddleware(logger, cras
 
 function render() {
     var state = store.getState();
+
+    console.log('state = ', state);
+
     document.getElementById('value').innerHTML = state.count.result;
     document.getElementById('value2').innerHTML = state.sum;
 
@@ -12,5 +15,6 @@ function render() {
         document.getElementById('status').innerHTML = 'loaded';
     }
 }
-render();
+
 store.subscribe(render);
+render();

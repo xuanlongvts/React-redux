@@ -1,7 +1,7 @@
 var _fakeServerApi = {
     increaseCount: function (currentCount, cb) {
         setTimeout(function () {
-            cb(currentCount++);
+            cb(currentCount + 1);
         }, 5000);
     }
 };
