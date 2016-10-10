@@ -12,6 +12,5 @@ function render() {
         document.getElementById('status').innerHTML = 'loaded';
     }
 }
-
-store.subscribe(render);
 render();
+store.subscribe(render);

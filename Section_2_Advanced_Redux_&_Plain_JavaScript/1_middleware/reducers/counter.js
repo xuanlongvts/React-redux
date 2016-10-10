@@ -4,7 +4,6 @@ function counter(currentState, action) {
         loading: false
     };
     var nextState = Object.assign({}, currentState);
-
     if(currentState === undefined){
         nextState = DEFAULT_STATE;
         return nextState;
@@ -15,10 +14,9 @@ function counter(currentState, action) {
             nextState.result = currentState.result - 1;
             return nextState;
         case 'INCREMENT':
-            nextState.result = currentState.result + 1;
-            nextState.loading = false;
+            nextState.result = currentState. result + 1;
             return nextState;
-        case 'INCREAMENT_LOADING':
+        case 'INCREMENT_LOADING':
             nextState.loading = true;
             return nextState;
         default:
