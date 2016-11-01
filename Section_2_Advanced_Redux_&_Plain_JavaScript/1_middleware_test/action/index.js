@@ -22,10 +22,9 @@ var getSum = function (a, b) {
 };
 
 var asyncIncrease = function (dispatch, state) {
-    console.log('asynIncrease');
-    _fakeServerApi.increaseCount(store.getState().count.result, function ( ) {
-        store.dispatch({
+    _fakeServerApi.increaseCount(state.count.result, function ( ) {
+        dispatch({
             type: 'INCREMENT'
         });
-    })
+    });
 };

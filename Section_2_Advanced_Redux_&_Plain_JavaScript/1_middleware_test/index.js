@@ -28,8 +28,7 @@ const crashReporter = function (store) {
 const thunk = function (store) {
     return function (next) {
         return function (action) {
-            if(action === 'function'){
-                console.log('thunkthunkthunk');
+            if(typeof action === 'function'){
                 action(store.dispatch, store.getState());
             }
             else{
