@@ -7,6 +7,8 @@ function render() {
 
     if(state.count.loading){
         document.getElementById('status').innerHTML = 'is loading...';
+    }
+    else{
         document.getElementById('status').innerHTML = 'loaded';
     }
 }
