@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>const, let example 03</title>
+</head>
+<body>
+<h1>const, let example 03</h1>
+<script language="javascript">
+    function testLet() {
+        for(var i = 0; i < 1; i++){
+            var v = {a: 'A'};
+            const co = {
+                a: 'A',
+                c: 'C'
+            };
+
+            console.log('Block scope');
+            console.log(' var v = ', v);
+            co.a = 'A 2';
+            co.b = 'B';
+            delete co.c;
+            try{
+                co = {a: 'A3'};
+            } catch (err){
+                console.log('error because using "co = ...":', err);
+            }
+            console.log(' const co = ', co);
+        }
+
+        console.log('Function scope: ');
+        console.log(' var v = ', v);
+    }
+
+    testLet();
+</script>
+</body>
+</html>

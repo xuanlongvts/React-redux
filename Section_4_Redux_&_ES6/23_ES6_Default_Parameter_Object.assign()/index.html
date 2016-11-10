@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Default parameter, Object</title>
+</head>
+<body>
+<h1>Default parameter, Object</h1>
+<script language="javascript">
+    function reducer(state = {a: 'default A', b: 'default B', c: 'default C'}) {
+        var nextState = Object.assign({}, state, {a:'A 2', b: 'B 2'}, {b: 'B 3'});
+        console.log('state = ', state);
+        console.log('nextState = ', nextState);
+        return nextState;
+    }
+    reducer();
+</script>
+</body>
+</html>
