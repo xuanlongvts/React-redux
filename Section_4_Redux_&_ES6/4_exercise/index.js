@@ -1,7 +1,7 @@
 var store = Redux.createStore(combineReducer, Redux.applyMiddleware(logger, crashReporter, thunk));
 
 function render() {
-    var state = store.getState();
+    const state = store.getState();
     $('#value').text(state.count.result);
     $('#value2').text(state.sum);
 
@@ -17,7 +17,7 @@ function render() {
         $('#imagesList').text('');
     }
     else if(state.images.loading == 'loaded'){
-        for(var i = 0; state.images.data.length; i++){
+        for(let i = 0; state.images.data.length; i++){
             $('#imagesList').append("<img src=" + state.images.data[i].link +" style='height: 200px;' />");
         }
     }

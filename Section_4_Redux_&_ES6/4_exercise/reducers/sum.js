@@ -1,16 +1,8 @@
-function sum(currentState, action) {
-    var DEFAULT_STATE = 3;
-    if(currentState === undefined){
-        nextState = DEFAULT_STATE;
-        return nextState;
-    }
+function sum(state = 3, action) {
     switch(action.type){
         case 'SUM':
-            nextState = parseInt(action.a) + parseInt(action.b);
-            //throw Error('an error from sum');
-            return nextState;
+            return parseInt(action.a) + parseInt(action.b);
         default:
-            nextState = currentState;
-            return nextState;
+            return state;
     }
 }
