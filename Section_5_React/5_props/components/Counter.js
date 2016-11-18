@@ -11,13 +11,15 @@ export default class Counter extends Component{
         this.setState({
             count: this.state.count - 1
         });
+
+        this.props.countDesc('Click "decrease" button');
     }
 
     render(){
         console.log('Counter.render()');
         return(
             <div>
-                Clicked: <span>{this.state.count}</span> times
+                Clicked: <span>{this.state.count}</span> times &nbsp;
                 <button onClick={this.decrease}>Decrease</button>
             </div>
         );

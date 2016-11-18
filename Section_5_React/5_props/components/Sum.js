@@ -19,7 +19,12 @@ export default class Sum extends Component{
                     <input value={this.state.b} onChange={(e) => this.setState({b: e.target.value})} /> =
                     <span> {this.state.sum} </span>&nbsp;&nbsp;
 
-                    <button onClick={()=>this.setState({sum: Number(this.state.a) + Number(this.state.b)})}>Sum</button>
+                    <button onClick={()=> {
+                        this.props.sumDesc('Click "Sum" button');
+                        this.setState({sum: Number(this.state.a) + Number(this.state.b)})}}
+                    >
+                        Sum
+                    </button>
                 </p>
             </div>
         )

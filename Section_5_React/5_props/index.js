@@ -12,9 +12,7 @@ class Describe extends Component{
         console.log('Describe.render()');
         return(
             <div>
-                <div style={{color: 'red'}}>
-                    Describe: {this.props.desc}
-                </div>
+                Describe: <span style={{color: 'red'}}>{this.props.desc}</span>
             </div>
         )
     }
@@ -24,7 +22,7 @@ class Exmples extends Component{
     constructor(props){
         super(props);
         this.state = {describe: 'none'};
-        this.describe = this.updateDescribe.bind(this);
+        this.updateDescribe = this.updateDescribe.bind(this);
     }
 
     updateDescribe(describe){
@@ -37,7 +35,7 @@ class Exmples extends Component{
             <div>
                 <h1>React</h1>
                 <Describe desc = {this.state.describe} />
-                <Counter2 />
+                <Counter2 countDesc = {this.updateDescribe} />
                 <Sum sumDesc = {this.updateDescribe} />
             </div>
         );
