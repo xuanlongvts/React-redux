@@ -1,12 +1,13 @@
-const decrease = () => ({type: 'DECREMENT'});
+import $ from 'jquery';
+export const decrease = () => ({type: 'DECREMENT'});
 
-const getSum = (a, b) => ({
+export const getSum = (a, b) => ({
     type: 'SUM',
     a: a,
     b: b
 });
 
-const asyncIncrease = (dispatch, state) => {
+export const asyncIncrease = (dispatch, state) => {
     dispatch({
         type: 'INCREMENT_LOADING'
     });
@@ -14,7 +15,7 @@ const asyncIncrease = (dispatch, state) => {
     _fakeServerApi.increaseCount(state.count.result, data => dispatch({type: 'INCREMENT'}));
 };
 
-const getRandomImages = (dispatch, state) => {
+export const getRandomImages = (dispatch, state) => {
     dispatch({
         type: 'IMAGES_LOADING'
     });
