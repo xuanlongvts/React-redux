@@ -1,19 +1,22 @@
 import React, {Component} from 'react'
 export default class Sum extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {a: 1, b: 2}
     }
 
     render() {
         console.log('Sum.render()');
+
+        const {state: {a,b}, props: {sum, onSum}} = this;
+
         return (
             <div>
-                <input value={this.state.a} onChange={(e)=>this.setState({a: e.target.value})}/>
-                + <input value={this.state.b} onChange={(e)=>this.setState({b: e.target.value})}/>
-                = <span>{this.props.sum}</span>
+                <input value={a} onChange={(e)=>this.setState({a: e.target.value})}/>
+                + <input value={b} onChange={(e)=>this.setState({b: e.target.value})}/>
+                = <span>{sum}</span>
                 <button onClick={() =>
-                    this.props.onSum(this.state.a, this.state.b)}>
+                    onSum(a, b)}>
                     Sum
                 </button>
                 <p/>
