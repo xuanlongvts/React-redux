@@ -1,11 +1,7 @@
 import $ from 'jquery';
 export const decrease = () => ({type: 'DECREMENT'});
 
-export const getSum = (a, b) => ({
-    type: 'SUM',
-    a: a,
-    b: b
-});
+export const getSum = (a, b) => ({type: 'SUM', a, b});
 
 export const asyncIncrease = (dispatch, state) => {
     dispatch({
