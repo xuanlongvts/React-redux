@@ -19,7 +19,7 @@ class Describe extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+/*const mapStateToProps = (state, ownProps) => {
     console.log('state: ', state.count.decrease);
     return {
         desc: state.count.decrease
@@ -28,6 +28,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const DescribeContainer = connect(
     mapStateToProps
+)(Describe);*/
+
+const DescribeContainer = connect(
+    (state, ownProps) => ({
+        desc: state.count.decrease
+    })
 )(Describe);
 
 export default DescribeContainer;
