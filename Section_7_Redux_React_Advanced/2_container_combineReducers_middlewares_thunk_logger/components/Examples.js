@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Counter2, { a as a2, b } from './Counter';
-import Sum from './Sum';
-import Describe from './Describe';
-import RandomImages from './RandomImages';
+import Counter from '../container/Counter';
+import Sum from '../container/Sum';
+import Describe from '../container/Describe';
+import RandomImages from '../container/RandomImages';
 
 export default class Examples extends Component{
     constructor(props){
@@ -10,14 +10,12 @@ export default class Examples extends Component{
     }
 
     render(){
-
         //const {value: {count: {decrease}, count, sum, images}, onDecrement, onSum, onRandomImages} = this.props;
-
         return(
             <div>
                 <h1>React</h1>
                 <Describe />
-                <Counter2 />
+                <Counter />
                 <Sum />
                 <RandomImages />
             </div>

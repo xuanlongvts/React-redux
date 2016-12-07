@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {decrease} from '../redux/actions/index';
 
-class Describe extends Component {
+export default class Describe extends Component {
 
     constructor(props) {
         super(props);
@@ -29,11 +27,3 @@ class Describe extends Component {
 const DescribeContainer = connect(
     mapStateToProps
 )(Describe);*/
-
-const DescribeContainer = connect(
-    (state, ownProps) => ({
-        desc: state.count.decrease
-    })
-)(Describe);
-
-export default DescribeContainer;
