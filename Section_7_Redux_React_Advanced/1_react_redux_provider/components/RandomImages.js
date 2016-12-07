@@ -40,7 +40,7 @@ function ImageList(props) {
     )
 }
 
-const mapStateToProps = (state, ownProps) => {
+/*const mapStateToProps = (state, ownProps) => {
     return{
         images: state.images
     }
@@ -55,6 +55,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const RandomImagesContainer = connect(
     mapStateToProps,
     mapDispatchToProps
+)(RandomImages);*/
+
+const RandomImagesContainer = connect(
+    (state, ownProps) => ({
+        images: state.images
+    }),
+    {
+        onRandomImages: () => getRandomImages
+    }
 )(RandomImages);
 
 export default RandomImagesContainer;
