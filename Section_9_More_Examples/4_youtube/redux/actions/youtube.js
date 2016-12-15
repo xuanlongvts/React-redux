@@ -24,9 +24,11 @@ export const search = (term, dispatch, state) => {
     let api = 'https://www.googleapis.com/youtube/v3/search';
     api = `${api}?part=snippet&q=${term}&maxResults=${MAX}&order=viewCount&key=${API_KEY}`;
 
-    $.getJSON(api).done(data => {
-        const list = data.items.filter((d) => d.id && d.id.videold);
-        dispatch(setList(list));
-        dispatch(setVideo(null));
-    });
+    $.getJSON(api).done(
+        data => {
+            const list = data.items.filter((d) => d.id && d.id.videold);
+            dispatch(setList(list));
+            dispatch(setVideo(null));
+        }
+    );
 };

@@ -1,0 +1,24 @@
+import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
+
+export default class Video extends Component{
+    render(){
+        const {props: {video}} = this;
+        if(!video){
+            return <div></div>
+        }
+
+        const {id:{videoId}} = video;
+
+        return(
+            <p>
+                <br />
+                <iframe width="480" height="270" src={`https://www.youtube.com/embed/${videoId}`}
+                    frameBorder="0" allowFullScreen=""
+                >
+                </iframe>
+            </p>
+        )
+    }
+}
+
