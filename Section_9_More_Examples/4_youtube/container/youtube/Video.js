@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-export default class Video extends Component{
+class Video extends Component{
     render(){
         const {props: {video}} = this;
         if(!video){
@@ -21,4 +21,8 @@ export default class Video extends Component{
         )
     }
 }
+
+export default connect((state) => ({
+    video: state.youtube.video
+}), null)(Video);
 
