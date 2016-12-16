@@ -20,13 +20,13 @@ export const search = (term, dispatch, state) => {
     });
 
     const MAX = 20;
-    const API_KEY = 'AIzaSyDER0QuIKQFd7fxVnlxA3s94BI7MRLx7f0';
+    const API_KEY = 'AIzaSyAY7wfv-FJ965RdnPjAxXNScS0VyJmsvZo';
     let api = 'https://www.googleapis.com/youtube/v3/search';
     api = `${api}?part=snippet&q=${term}&maxResults=${MAX}&order=viewCount&key=${API_KEY}`;
 
     $.getJSON(api).done(
         data => {
-            const list = data.items.filter((d) => d.id && d.id.videold);
+            const list = data.items.filter((d) => d.id && d.id.videoId);
             dispatch(setList(list));
             dispatch(setVideo(null));
         }

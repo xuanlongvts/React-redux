@@ -7,7 +7,7 @@ class List extends Component{
         const {props: {list}} = this;
 
         return(
-            <ul>
+            <div>
                 {
                     list.map(video =>{
                         const {id: {videoId}} = video;
@@ -16,7 +16,7 @@ class List extends Component{
                         )
                     })
                 }
-            </ul>
+            </div>
         )
     }
 }
