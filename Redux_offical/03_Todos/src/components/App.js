@@ -4,7 +4,7 @@ import AddTodo from '../containers/AddTodo';
 
 const App = () => (
     <div>
-        <AddTodo/>
+        <AddTodo />
         <Footer/>
     </div>
 );

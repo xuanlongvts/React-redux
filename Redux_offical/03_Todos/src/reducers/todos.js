@@ -17,19 +17,18 @@ const todo = (state, action) => {
             };
         default:
             return state;
-
     }
 };
 
 const todos = (state = [], action) => {
     switch (action.type){
         case 'ADD_TODO':
-            return[
+            return [
                 ...state,
                 todo(undefined, action)
             ];
         case 'TOGGLE_TODO':
-            return state.map(t => todo(t, action));
+            return state.map(t => todo(t,action));
         default:
             return state;
     }

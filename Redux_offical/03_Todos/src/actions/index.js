@@ -9,14 +9,14 @@ export const addTodo = (text) => {
 };
 
 export const setVisibilityFilter = (filter) => {
-    return{
+    return {
         type: 'SET_VISIBILITY_FILTER',
         filter
     }
 };
 
 export const toggleTodo = (id) => {
-    return{
+    return {
         type: 'TOGGLE_TODO',
         id
     }
