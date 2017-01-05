@@ -4,9 +4,12 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import App from './containers/App';
 import 'todomvc-app-css/index.css';
+import reducer from './reducers/index';
+
+const store = createStore(reducer);
 
 render(
-    <Provider>
+    <Provider store={store}>
         <App/>
     </Provider>,
     document.getElementById('root')
