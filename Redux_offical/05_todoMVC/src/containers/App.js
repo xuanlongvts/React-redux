@@ -5,10 +5,10 @@ import Header from '../componenets/Header';
 import MainSection from '../componenets/MainSection';
 import * as TodoActions from '../actions/index';
 
-
 const App = ({todos, actions}) => (
     <div>
         <Header addTodo = {actions.addTodo}/>
+        <MainSection todos={todos} actions={actions} />
     </div>
 );
 
