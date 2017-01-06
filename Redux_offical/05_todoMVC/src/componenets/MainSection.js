@@ -8,23 +8,26 @@ const TODO_FILTERS = {
     [SHOW_COMPLETED]: todo => todo.completed
 };
 
-class MainSection extends Component{
-    constructor(props, context){
-        super(props, context);
-        this.state = {
-            filter: SHOW_ALL
-        }
-    }
+export default class MainSection extends Component{
 
-    handleClearCompleted(){
+    static propTypes = {
+        todos: PropTypes.array.isRequired,
+        actions: PropTypes.object.isRequired
+    };
+
+    state = {
+        filter: SHOW_ALL
+    };
+
+    handleClearCompleted = () => {
         this.props.actions.clearCompleted();
-    }
+    };
 
-    handleShow(filter){
+    handleShow = filter => {
         this.setState({filter});
-    }
+    };
 
-    renderToggleAll(completedCount){
+    renderToggleAll = completedCount => {
         const {todos, actions} = this.props;
         if(todos.length > 0){
             return(
@@ -35,9 +38,9 @@ class MainSection extends Component{
                 />
             )
         }
-    }
+    };
 
-    renderFooter(completedCount){
+    renderFooter = completedCount => {
         const {todos} = this.props;
         const {filter} = this.state;
         const activeCount = todos.length - completedCount;
@@ -52,9 +55,9 @@ class MainSection extends Component{
                 />
             );
         }
-    }
+    };
 
-    render(){
+    render = () => {
         const {todos, actions} = this.props;
         const {filter} = this.state;
 
@@ -73,10 +76,3 @@ class MainSection extends Component{
         )
     }
 }
-
-MainSection.propTypes = {
-    todos: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
-};
-
-export default MainSection;
