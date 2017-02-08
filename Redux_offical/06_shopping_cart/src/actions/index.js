@@ -3,13 +3,13 @@ import * as types from '../constants/ActionTypes';
 
 const receiveProducts = products => ({
     type: types.RECEIVE_PRODUCTS,
-    products
+    products: products
 });
 
 export const getAllProducts = () => dispatch => {
     shop.getProducts(products => {
         dispatch(receiveProducts(products))
-    });
+    })
 };
 
 const addToCartUnsafe = productId => ({
@@ -25,6 +25,7 @@ export const addToCart = productId => (dispatch, getState) => {
 
 export const checkout = products => (dispatch, getState) => {
     const {cart} = getState();
+
     dispatch({
         type: types.CHECKOUT_REQUEST
     });
@@ -34,5 +35,5 @@ export const checkout = products => (dispatch, getState) => {
             type: types.CHECKOUT_SUCCESS,
             cart
         })
-    });
+    })
 };
