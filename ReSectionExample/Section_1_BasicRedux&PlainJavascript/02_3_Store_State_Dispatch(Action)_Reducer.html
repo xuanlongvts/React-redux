@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redux basic example</title>
+    <script src="https://npmcdn.com/redux@latest/dist/redux.min.js"></script>
+</head>
+<body>
+<div>
+    <p>
+        Clicked: <span id="value">?</span> times
+        <button id="decrement">Decrease</button>
+        <button id="incrementAsync">Increment async</button>
+    </p>
+</div>
+<script language="javascript">
+	function counter(currentState, action){
+		var DEFAULT_STATE = {
+			count: 0
+		};
+
+		var nextState = Object.assign({}, currentState);
+
+		if(currentState === undefined){
+			nextState = DEFAULT_STATE;
+			return nextState;
+		}
+
+		switch (action.type){
+			case 'DECREMENT':
+				nextState.count = currentState.count - 1;
+				return nextState;
+			case 'INCREMENT':
+				nextState.count = currentState.count + 1;
+				return nextState;
+			default:
+				return nextState;
+		}
+	}
+	var store = Redux.createStore(counter);
+	var valueEl = document.getElementById('value');
+	function render(){
+		valueEl.innerHTML = store.getState().count;
+	}
+	render();
+	store.subscribe(render);
+
+	document.getElementById('decrement').addEventListener('click', function(){
+		var action = {
+			type: 'DECREMENT'
+		};
+
+		store.dispatch(action);
+	});
+
+	document.getElementById('incrementAsync').addEventListener('click', function(){
+		var action = {
+			type: 'INCREMENT'
+		};
+
+		store.dispatch(action);
+	});
+</script>
+</body>
+</html>
