@@ -10,22 +10,21 @@ export default class Examples extends Component{
 	}
 
 	render() {
-		const {value: {count: {decrease}, count, sum: {result}, images}, onDecrement, onSum, onRandomImages} = this.props;
 		return(
 			<div>
-				<Describe status={decrease}
+				<Describe status={this.props.value.count.decrease}
 				/>
 				<Counter
-					count = {count}
-					onDecrement = {onDecrement}
+					count = {this.props.value.count}
+					onDecrement = {this.props.onDecrement}
 				 />
 				<Sum
-					sum = {result}
-					onSum = {onSum}
+					sum = {this.props.value.sum.result}
+					onSum = {this.props.onSum}
 				/>
 				<RandomImages
-					images = {images}
-					onRandomImages = {onRandomImages}
+					images = {this.props.value.images}
+					onRandomImages = {this.props.onRandomImages}
 				/>
 			</div>
 		)

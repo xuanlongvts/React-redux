@@ -11,21 +11,20 @@ export default class Sum extends Component{
 	}
 
 	render(){
-		const {state: {a, b}, props: {sum, onSum}} = this;
 		return(
 			<p>
 				<input type = "textbox"
-					value = {a}
+					value = {this.state.a}
 					onChange = {(e) => this.setState({a: e.target.value})}
 				/> + &nbsp;
 				<input type="textbox"
-					value = {b}
+					value = {this.state.b}
 					onChange = {(e) => this.setState({b: e.target.value})}
 				/> =  &nbsp;
-				<span>{sum}</span> &nbsp;
+				<span>{this.props.sum}</span> &nbsp;
 				<button
 					onClick = {()=>
-						onSum(a, b)
+						this.props.onSum(this.state.a, this.state.b)
 					}
 				>
 					Sum
