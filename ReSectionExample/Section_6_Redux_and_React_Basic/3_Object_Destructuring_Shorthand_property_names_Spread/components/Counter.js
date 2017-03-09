@@ -6,10 +6,11 @@ export default class Counter extends Component{
 	}
 
 	render(){
+		const {count: {result}, onDecrement} = this.props;
 		return(
 			<p>
-				Clicked: <span>{this.props.count.result}</span> times &nbsp;
-				<button onClick={this.props.onDecrement}>Decrease</button>
+				Clicked: <span>{result}</span> times &nbsp;
+				<button onClick={onDecrement}>Decrease</button>
 			</p>
 		)
 	}

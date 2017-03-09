@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import {connect} from 'react-redux';
+import {getRandomImages} from '../redux/actions/index';
 
-export default class RandomImage extends Component{
+class RandomImage extends Component{
 	constructor(props) {
 		super(props);
 	}
@@ -35,3 +37,18 @@ function ImageList(props) {
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+	images: state.images
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	onRandomImages: () => dispatch(getRandomImages)
+});
+
+const RandomImagesContainer = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(RandomImage);
+
+export default RandomImagesContainer;

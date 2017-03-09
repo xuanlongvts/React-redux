@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {getSum} from '../redux/actions/index';
 
-export default class Sum extends Component{
+class Sum extends Component{
 	constructor(props) {
 		super(props);
 
@@ -11,7 +13,7 @@ export default class Sum extends Component{
 	}
 
 	render(){
-		const {state: {a, b}, props: {sum, onSum}} = this;
+		const {state: {a, b}, props: {sum: {result}, onSum}} = this;
 		return(
 			<p>
 				<input type = "textbox"
@@ -22,7 +24,7 @@ export default class Sum extends Component{
 					value = {b}
 					onChange = {(e) => this.setState({b: e.target.value})}
 				/> =  &nbsp;
-				<span>{sum}</span> &nbsp;
+				<span>{result}</span> &nbsp;
 				<button
 					onClick = {()=>
 						onSum(a, b)
@@ -34,3 +36,21 @@ export default class Sum extends Component{
 		)
 	}
 }
+
+const mapStateToProps = (state) => (
+	{
+		sum: state.sum
+	}
+);
+
+const mapDispatchToProps = (dispatch) => ({
+		onSum: (a,b) => dispatch(getSum(a,b))
+	}
+)
+
+const SumContainer = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Sum);
+
+export default SumContainer;
