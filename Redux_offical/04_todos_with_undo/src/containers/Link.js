@@ -34,7 +34,6 @@ export default connect(
 	(dispatch, ownProps) => (
 			{
 				onClick: () => {
-					console.log('ownProps.filter: ', ownProps.filter);
 					dispatch(setVisibilityFilter(ownProps.filter))
 				}
 			}			
