@@ -16,6 +16,10 @@ export default class Header extends Component {
 		return(
 			<header className='header'>
 				<h1>Todos</h1>
+				<TodoTextInput newTodo
+					onSave={this.handleSave}
+					placeholder='What needs to be done?'
+				/>
 			</header>
 		)
 	}

@@ -3,10 +3,12 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as TodoActions from '../actions/index';
 import Header from '../components/Header';
+import MainSection from '../components/MainSection';
 
 const App = ({todos, actions}) => (
 	<div>
-		<Header addTodo = {actions.addTodo} />
+		<Header addTodo={actions.addTodo} />
+		<MainSection todos={todos} actions={actions} />
 	</div>
 );
 
