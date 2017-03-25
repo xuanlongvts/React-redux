@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import * as types from '../constants/TodoFilters';
 import Footer from './Footer';
+import TodoItem from './TodoItem';
 
 export default class MainSection extends Component{
 
@@ -64,15 +65,35 @@ export default class MainSection extends Component{
 			0
 		);
 
-		console.log('completedCount: ', completedCount);
+		let filteredTodos = null;
+
+		switch (filter){
+			case types.SHOW_ALL:
+				filteredTodos = todos;
+				break;
+			case types.SHOW_ACTIVE:
+				console.log('show_active');
+				filteredTodos = todos.filter(todo => !todo.completed);
+				break;
+			case types.SHOW_COMPLETED:
+				console.log('show_completed');
+				filteredTodos = todos.filter(todo => todo.completed);
+				break;
+		}
 
 		return(
 			<section className="main">
 				{this.renderToggleAll(completedCount)}
 				<ul className="todo-list">
-					<li>aaa</li>
+					{filteredTodos &&
+						filteredTodos.map(todo => 
+							<TodoItem key={todo.id} 
+								todo={todo} {...actions}
+							/>
+						)
+					}
 				</ul>
-			
+				{this.renderFooter(completedCount)}
 			</section>
 		)
 	}
