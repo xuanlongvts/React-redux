@@ -6,6 +6,7 @@ import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducer from './reducers/index';
 import {getAllProducts} from './actions/index';
+import App from './containers/App';
 
 const middleware = [thunk];
 if(process.env.NODE_ENV !== 'production'){
@@ -21,7 +22,7 @@ store.dispatch(getAllProducts());
 
 render(
 	<Provider store={store}>
-		<div>aaa</div>
+		<App />
 	</Provider>,
 	document.getElementById('root')
 )
