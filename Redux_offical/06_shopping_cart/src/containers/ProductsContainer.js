@@ -7,17 +7,15 @@ import ProductsList from '../components/ProductsList';
 
 const ProductsContainer = ({products, addToCart}) => (
 	<ProductsList title="Products">
-		{
-			products.map(product => 
-				<ProductItem
-					key={product.id}
-					product={product}
-					onAddToCartClicked={() => addToCart(product.id)}
-				/>
-			)
-		}
+		{products.map(product =>
+			<ProductItem 
+				key={product.id}
+				product={product}
+				onAddToCartClicked={() => addToCart(product.id)}
+			/>
+		)}
 	</ProductsList>
-);
+)
 
 ProductsContainer.propTypes = {
 	products: PropTypes.arrayOf(PropTypes.shape({
