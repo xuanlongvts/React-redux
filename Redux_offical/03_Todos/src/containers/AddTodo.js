@@ -4,7 +4,6 @@ import {addTodo} from '../actions/index';
 
 let AddTodo = ({dispatch}) => {
     let input;
-
     return(
         <div>
             <form onSubmit={e=>{

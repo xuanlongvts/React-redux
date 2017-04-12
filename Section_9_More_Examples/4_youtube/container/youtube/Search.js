@@ -10,6 +10,10 @@ class Search extends Component{
         }
     }
 
+    componentDidMount() {
+        console.log('dispatch: ', this.props.dispatch);
+    }
+
     render(){
         const {state: {term}} = this;
         const onSetTerm = (e) => {
