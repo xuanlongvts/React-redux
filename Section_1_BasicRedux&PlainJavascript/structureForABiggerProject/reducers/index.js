@@ -4,6 +4,7 @@ function combineReducer(currentState, action) {
         sum: 3
     };*/
     var nextState = Object.assign({}, currentState);
+    console.log('nextState: ', nextState);
     nextState = {
         count: counter(nextState.count, action),
         sum: sum(nextState.sum, action)

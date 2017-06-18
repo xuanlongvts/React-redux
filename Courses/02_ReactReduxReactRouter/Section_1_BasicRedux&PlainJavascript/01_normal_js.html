@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redux basic example</title>
+</head>
+<body>
+<h2>Redux basic example</h2>
+<div>
+    <p>
+        Clicked: <span id="value"></span> times
+        <button id="decrement">Decrease</button>
+        <button id="incrementAsync">Increment async</button>
+    </p>
+</div>
+<script language="javascript">
+    var ele = document.getElementById('value');
+
+    function render(){
+        ele.innerHTML = 0;
+    }
+    render();
+
+    document.getElementById('decrement').addEventListener('click', function(){
+            ele.innerHTML = ele.innerHTML - 1;
+    });
+
+    document.getElementById('incrementAsync').addEventListener('click', function(){
+        setTimeout(function(){
+            ele.innerHTML = parseInt(ele.innerHTML) + 1;
+        }, 1000);
+    })
+</script>
+</body>
+</html>
