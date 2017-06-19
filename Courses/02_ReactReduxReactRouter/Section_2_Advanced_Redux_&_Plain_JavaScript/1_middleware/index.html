@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redux basic example</title>
+    <!--STEP 1.1-->
+    <script src="https://npmcdn.com/redux@latest/dist/redux.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <!--~end STEP 1.1-->
+    <script src="_fakeServerApi/index.js"></script>
+    <script src="actions/index.js"></script>
+    <script src="reducers/counter.js"></script>
+    <script src="reducers/sum.js"></script>
+    <script src="reducers/images.js"></script>
+    <script src="reducers/index.js"></script>
+    <script src="middlewares/index.js"></script>
+</head>
+<body>
+<div>
+    <p>
+        Clicked: <span id="value">0</span> times
+        <button id="decrement">Decrease</button>
+        <button id="incrementAsync">Increment async</button>
+    </p>
+    <p>
+        Count status: <span id="status" style="color: blue;"></span>
+    </p>
+    <p>
+        <input id="a" value="1"/> + <input id="b" value="2"/>
+        = <span id="value2">?</span>
+        <button id="sum">Sum</button>
+    </p>
+
+    <p>
+        <button id="randomImagesButton"
+        style="padding: 10px; border-radius: 5px; color: #fff; font: 700 18px/20px arial; outline: none;"
+        >
+            Random Images </button>
+        <br><br>
+        Images Status: <span id="imagesStatus" style="color:blue"></span>
+    </p>
+    <div id="imagesList"></div>
+</div>
+<script language="javascript">
+    document.getElementById('decrement')
+    .addEventListener('click', function(){
+        store.dispatch(decrease());
+    });
+    document.getElementById('incrementAsync')
+    .addEventListener('click', function(){
+        store.dispatch(asyncIncrease);
+    });
+    document.getElementById('sum')
+    .addEventListener('click', function(){
+        var getParams = window.getParams();
+        
+        store.dispatch(getSum(parseInt(getParams.a), parseInt(getParams.b)));
+    });
+    document.getElementById('randomImagesButton')
+    .addEventListener('click', function () {
+        store.dispatch(getRandomImages);
+    });
+</script>
+<script language="javascript" src="index.js"></script>
+</body>
+</html>
