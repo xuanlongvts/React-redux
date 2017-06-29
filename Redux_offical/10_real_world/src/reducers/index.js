@@ -15,7 +15,16 @@ const errMessage = (state = null, action) => {
 	return state;
 }
 
+const entities = (state = { users: {}, repos: {} }, action) => {
+	console.log('action: ', action);
+
+	return {
+		
+	}
+}
+
 const rootReducer = combineReducers({
+	entities,
 	errMessage,
 	routing
 });

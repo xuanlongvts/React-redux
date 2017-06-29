@@ -4,7 +4,7 @@ const logger = function(store){
 			console.group('Logger');
 			console.log('currentState: ', store.getState());
 			//console.log('In Logger, next: ', next);
-			console.log('next(action), action: ', action);
+			//console.log('next(action), action: ', action);
 			next(action);
 			console.log('currentState: ', store.getState());
 			console.groupEnd('Logger');
@@ -32,6 +32,7 @@ const crashReporter = function(store){
 const thunk = function(store){
 	return function(next){
 		return function(action){
+			console.log('action s s s s:', action);
 			if(typeof action === 'function'){
 				action(store.dispatch, store.getState());
 			}

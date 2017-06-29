@@ -16,7 +16,6 @@ class UserPage extends Component{
 	}
 
 	componentWillMount() {
-		console.log('props: ', this.props);
 		loadData(this.props);
 	}
 

@@ -15,19 +15,46 @@ const callApi = (endPoint, schema) => {
 				const camelizedJson = camelizeKeys(json);
 
 				return {
-					...normalize(camelizedJson, schema)
+					...camelizedJson
 				}
 			})
 		)
 }
 
-const userSchema = new schema.Entity('users', {}, {
-	idAtribute: user => user.login.toLowerCase()
-})
-
-export const Schemas = {
-	USER: userSchema
-}
-
-
 export const CALL_API = 'Cal API';
+
+export default store => next => action => {
+
+	const callAPI = action[CALL_API];
+	if (typeof callAPI === 'undefined') {
+		return next(action);
+	}
+	
+	let { endpoint } = callAPI;
+	const { schema, types } = callAPI;
+
+	const [requestType, successType, failureType] = types;
+
+	const actionWith = data => {
+		const finalAction = Object.assign({}, action, data);
+		delete finalAction[CALL_API];
+		return finalAction;
+	}
+
+	next(actionWith({ type: requestType }));
+
+	return callApi(endpoint, schema).then(
+		response => {
+			return next(actionWith({
+				response,
+				type: successType
+			}));
+		},
+		err => {
+			return next(actionWith({
+				error: err.message || 'Something bad happend',
+				type: failureType
+			}));
+		}
+	)
+}

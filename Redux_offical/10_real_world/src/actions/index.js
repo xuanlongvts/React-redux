@@ -1,4 +1,4 @@
-import {CALL_API, Schemas} from '../middleware/api';
+import {CALL_API} from '../middleware/api';
 
 export const USER_REQUEST = 'USER_REQUEST';
 export const USER_SUCCESS = 'USER_SUCCESS';
@@ -13,13 +13,14 @@ export const resetErrorMessage = () => ({
 
 
 
-const fetchUser = login => ({
-	[CALL_API]: {
-		types: [USER_REQUEST, USER_SUCCESS, USER_FAILURE],
-		endpoint: `users/${login}`,
-    	schema: Schemas.USER
+const fetchUser = login => {
+	return {
+		[CALL_API]: {
+			types: [USER_REQUEST, USER_SUCCESS, USER_FAILURE],
+			endpoint: `users/${login}`
+		}
 	}
-});
+};
 
 export const loadUser = (login, requiredFields = []) => (dispatch, getState) => {
 
