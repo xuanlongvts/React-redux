@@ -1,10 +1,34 @@
 'use strict';
 
-export function booksReducers(state = {books: []}, action) {
+var INIT_STATE = [
+    {
+        id: 1,
+        title: 'This is the book title',
+        description: 'Descripton book 1',
+        price: 33.33
+    },
+    {
+        id: 2,
+        title: 'This is the book title 2',
+        description: 'Descripton book 2',
+        price: 66.66
+    },
+    {
+        id: 3,
+        title: 'This is the book title 3',
+        description: 'Descripton book 3',
+        price: 11.11
+    }
+];
+
+export function booksReducers(state = { books: INIT_STATE }, action) {
     switch (action.type) {
+        case 'GET_BOOK':
+            return {
+                ...state,
+                books: [...state.books]
+            }    
         case 'POST_BOOK':
-            //let books = state.books.concat(action.payload);
-            //return { books };
             return {
                 books: [...state.books, ...action.payload]
             }
