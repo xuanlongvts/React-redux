@@ -7,6 +7,7 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 import BookItem from './bookItem';
 import BooksForm from './booksForm';
+import Cart from './cart';
 
 class BooksList extends Component{
 
@@ -21,11 +22,15 @@ class BooksList extends Component{
             <Col xs={12} sm={6} md={4} key={key}>
                 <BookItem item={item} />
             </Col>
-        ))
+        ));
+        
         return (
             <Grid>
                 <Row>
-                    <Col xs={12} sm={6}>
+                    <Cart />
+                </Row>
+                <Row>
+                    <Col xs={12} sm={6} md={4}>
                         <BooksForm />    
                     </Col>
                     {books && booksList}

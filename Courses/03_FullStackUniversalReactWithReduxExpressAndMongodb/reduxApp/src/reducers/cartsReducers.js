@@ -1,8 +1,12 @@
 'use strict';
 
-export function cartsReducers(state = { cart: [] }, action) {
+const init_state = {
+    cart: []
+}
+
+export function cartsReducers(state = init_state, action) {
     switch (action.type) {
-        case 'ADD_TO_CART':
+        case 'ADD_TO_CART':  
             return {
                 cart: [
                     ...state.cart,
@@ -10,6 +14,6 @@ export function cartsReducers(state = { cart: [] }, action) {
                 ]
             }
         default:
-            return state;    
+            return state;
     }
 }

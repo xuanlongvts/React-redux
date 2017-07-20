@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
-import { addToCart } from './actions/cartActions';
 import { postBooks, deleteBooks, updateBooks } from './actions/booksActions.js';
 import reducers from './reducers/index';
 
@@ -21,5 +20,3 @@ render(
     </Provider>,
     document.getElementById('app')
 );
-
-store.dispatch(addToCart([{id: 1}]))
