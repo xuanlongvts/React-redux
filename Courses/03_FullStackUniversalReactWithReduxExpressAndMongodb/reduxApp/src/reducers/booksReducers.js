@@ -1,27 +1,29 @@
 'use strict';
 
-var INIT_STATE = [
-    {
-        id: 1,
-        title: 'This is the book title',
-        description: 'Descripton book 1',
-        price: 33.33
-    },
-    {
-        id: 2,
-        title: 'This is the book title 2',
-        description: 'Descripton book 2',
-        price: 66.66
-    },
-    {
-        id: 3,
-        title: 'This is the book title 3',
-        description: 'Descripton book 3',
-        price: 11.11
-    }
-];
+var INIT_STATE = {
+    books: [
+        {
+            id: 1,
+            title: 'This is the book title 1',
+            description: 'Descripton book 1',
+            price: 33.33
+        },
+        {
+            id: 2,
+            title: 'This is the book title 2',
+            description: 'Descripton book 2',
+            price: 66.66
+        },
+        {
+            id: 3,
+            title: 'This is the book title 3',
+            description: 'Descripton book 3',
+            price: 11.11
+        }
+    ]
+};
 
-export function booksReducers(state = { books: INIT_STATE }, action) {
+export function booksReducers(state = INIT_STATE, action) {
     switch (action.type) {
         case 'GET_BOOK':
             return {
@@ -30,7 +32,11 @@ export function booksReducers(state = { books: INIT_STATE }, action) {
             }    
         case 'POST_BOOK':
             return {
-                books: [...state.books, ...action.payload]
+                ...state,
+                books: [
+                    ...state.books,
+                    ...action.payload
+                ]
             }
         case 'DELETE_BOOK':
             const currentBookToDelete = state.books;

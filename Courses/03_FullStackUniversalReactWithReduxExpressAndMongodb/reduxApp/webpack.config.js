@@ -8,6 +8,7 @@ module.exports = {
         path: path.resolve(__dirname, 'public')
     },
     watch: true,
+    devtool: 'eval-source-map',
     module: {
         loaders: [
             {

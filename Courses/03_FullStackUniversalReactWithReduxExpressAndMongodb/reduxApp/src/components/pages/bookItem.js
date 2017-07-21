@@ -4,26 +4,57 @@ import React, { Component } from 'react';
 import { Row, Well, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addToCart } from '../../actions/cartActions';
+import { addToCart, updateCartItem } from '../../actions/cartActions';
 
 class BookItem extends Component{
+
     constructor(props) {
         super(props);
 
         this.handleCart = this.handleCart.bind(this);
     }
 
-    handleCart() {
-        const { id, title, description, price } = this.props.item;
+    handleCart(_id) {
+        const {
+            item: { id, title, description, price },
+            cart
+        } = this.props;
+
         const book = [
             {
                 id,
                 title,
                 description,
-                price
+                price,
+                quality: 1,
+                maxBuy: 10
             }
         ];
-        this.props.addToCart(book);
+
+        if (cart.length < 1) {
+            this.props.addToCart(book);
+        }
+        else {
+            let quality = 0;
+            let maxBuy = 0;
+            let cartIndex = cart.findIndex(
+                eactItem => {
+                    if (eactItem.id === _id) {
+                        quality = parseInt(eactItem.quality);
+                        maxBuy = parseInt(eactItem.maxBuy);
+                        return true;
+                    }
+                        
+                }
+            );
+
+            if (cartIndex === -1) {
+                this.props.addToCart(book);
+            }
+            else {
+                quality >= maxBuy ? false : this.props.updateCartItem(id, 1);
+            }
+        }
     }
 
     render() {
@@ -33,7 +64,10 @@ class BookItem extends Component{
                 <h6>{item.title}</h6>
                 <p>{item.description}</p>
                 <h6>$. {item.price}</h6>
-                <Button onClick={this.handleCart} bsStyle="primary">Buy now</Button>
+                <Button bsStyle="primary"
+                    onClick={this.handleCart.bind(this, item.id)}
+                >Buy now
+                </Button>
             </Well>
         )
     }
@@ -46,8 +80,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
-        addToCart
+        addToCart,
+        updateCartItem
     }, dispatch)
-)
+);
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookItem);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(BookItem);
