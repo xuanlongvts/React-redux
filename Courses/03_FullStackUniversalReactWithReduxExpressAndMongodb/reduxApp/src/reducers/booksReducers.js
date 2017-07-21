@@ -6,19 +6,19 @@ var INIT_STATE = {
             id: 1,
             title: 'This is the book title 1',
             description: 'Descripton book 1',
-            price: 33.33
+            price: 100
         },
         {
             id: 2,
             title: 'This is the book title 2',
             description: 'Descripton book 2',
-            price: 66.66
+            price: 500
         },
         {
             id: 3,
             title: 'This is the book title 3',
             description: 'Descripton book 3',
-            price: 11.11
+            price: 900
         }
     ]
 };

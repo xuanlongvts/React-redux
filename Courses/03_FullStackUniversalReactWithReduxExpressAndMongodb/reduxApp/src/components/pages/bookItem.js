@@ -26,7 +26,7 @@ class BookItem extends Component{
                 title,
                 description,
                 price,
-                quality: 1,
+                quantity: 1,
                 maxBuy: 10
             }
         ];
@@ -35,12 +35,12 @@ class BookItem extends Component{
             this.props.addToCart(book);
         }
         else {
-            let quality = 0;
+            let quantity = 0;
             let maxBuy = 0;
             let cartIndex = cart.findIndex(
                 eactItem => {
                     if (eactItem.id === _id) {
-                        quality = parseInt(eactItem.quality);
+                        quantity = parseInt(eactItem.quantity);
                         maxBuy = parseInt(eactItem.maxBuy);
                         return true;
                     }
@@ -52,7 +52,7 @@ class BookItem extends Component{
                 this.props.addToCart(book);
             }
             else {
-                quality >= maxBuy ? false : this.props.updateCartItem(id, 1);
+                quantity >= maxBuy ? false : this.props.updateCartItem(id, 1);
             }
         }
     }
