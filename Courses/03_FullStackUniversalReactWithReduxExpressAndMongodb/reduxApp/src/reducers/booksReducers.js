@@ -42,7 +42,7 @@ export function booksReducers(state = INIT_STATE, action) {
             const currentBookToDelete = state.books;
             const indexToDelete = currentBookToDelete.findIndex(
                 function (book) {
-                    return book.id === action.payload.id;
+                    return book.id === action.payload;
                 }
             );
             return {
@@ -57,7 +57,7 @@ export function booksReducers(state = INIT_STATE, action) {
             const currentBookToUpdate = state.books;
             const indexToUpdate = currentBookToUpdate.findIndex(
                 function (book) {
-                    return book.id === action.payload.id;
+                    return book.id === action.payload;
                 }
             );
             const newBookToUpdate = {

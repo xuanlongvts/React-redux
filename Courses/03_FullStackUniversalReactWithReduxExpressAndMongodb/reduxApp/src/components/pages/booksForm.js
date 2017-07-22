@@ -8,7 +8,7 @@ import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { postBooks } from '../../actions/booksActions';
+import { postBooks, deleteBooks } from '../../actions/booksActions';
 
 class BooksForm extends Component{
 
@@ -16,6 +16,7 @@ class BooksForm extends Component{
         super(props);
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onDeleteBook = this.onDeleteBook.bind(this);
     }
 
     handleSubmit() {
@@ -28,7 +29,18 @@ class BooksForm extends Component{
         this.props.postBooks(book);
     }
 
+    onDeleteBook() {
+        let bookId = findDOMNode(this.refs.delete).value;
+        this.props.deleteBooks(parseInt(bookId));
+    }
+
     render() {
+        const { books } = this.props;
+        const booksList = books.map((item, key) => (
+            <option key={key}>
+                {item.id}
+            </option>
+        ));
         return (
             <Well>
                 <Panel>
@@ -61,9 +73,20 @@ class BooksForm extends Component{
                         >
                         </FormControl>
                     </FormGroup>
-
                     <Button onClick={this.handleSubmit} bsStyle="primary">
                         Save book
+                    </Button>
+                </Panel>
+                <Panel style={{marginTop: '20px'}}>
+                    <FormGroup controlId="formControlsSelect">
+                        <ControlLabel>Select a book</ControlLabel>
+                        <FormControl ref="delete" componentClass="select" placeholder="select">
+                            <option value="select">select</option>
+                            {booksList}
+                        </FormControl>
+                    </FormGroup>
+                    <Button onClick={this.onDeleteBook} bsStyle="danger">
+                        Delete book
                     </Button>
                 </Panel>
             </Well>
@@ -71,10 +94,15 @@ class BooksForm extends Component{
     }
 }
 
+const mapStateToProps = state => ({
+    books: state.books.books
+})
+
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
-        postBooks
+        postBooks,
+        deleteBooks
     }, dispatch)
 )
 
-export default connect(null, mapDispatchToProps)(BooksForm);
+export default connect(mapStateToProps, mapDispatchToProps)(BooksForm);
