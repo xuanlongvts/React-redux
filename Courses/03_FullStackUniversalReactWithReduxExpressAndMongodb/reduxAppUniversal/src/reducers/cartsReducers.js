@@ -21,7 +21,7 @@ export function cartsReducers(state = INIT_STATE, action) {
             const currentCartToDelete = state.cart;
             const indexToDelete = currentCartToDelete.findIndex(
                 cart => {
-                    return cart.id === action.payload
+                    return cart._id === action.payload
                 }
             );
             let newCartDelete = [
@@ -39,7 +39,7 @@ export function cartsReducers(state = INIT_STATE, action) {
             const currentCartToUpdate = state.cart;
             const indexToUpdate = currentCartToUpdate.findIndex(
                 cart => {
-                    return cart.id === id
+                    return cart._id === id
                 }
             );
             

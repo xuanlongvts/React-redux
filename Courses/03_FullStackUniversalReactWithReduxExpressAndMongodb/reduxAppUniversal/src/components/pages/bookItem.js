@@ -14,15 +14,15 @@ class BookItem extends Component{
         this.handleCart = this.handleCart.bind(this);
     }
 
-    handleCart(_id) {
+    handleCart(_idProduct) {
         const {
-            item: { id, title, description, price },
+            item: { _id, title, description, price },
             cart
         } = this.props;
 
         const book = [
             {
-                id,
+                _id,
                 title,
                 description,
                 price,
@@ -39,12 +39,11 @@ class BookItem extends Component{
             let maxBuy = 0;
             let cartIndex = cart.findIndex(
                 eactItem => {
-                    if (eactItem.id === _id) {
+                    if (eactItem._id === _idProduct) {
                         quantity = parseInt(eactItem.quantity);
                         maxBuy = parseInt(eactItem.maxBuy);
                         return true;
                     }
-                        
                 }
             );
 
@@ -52,7 +51,7 @@ class BookItem extends Component{
                 this.props.addToCart(book);
             }
             else {
-                quantity >= maxBuy ? false : this.props.updateCartItem(id, 1);
+                quantity >= maxBuy ? false : this.props.updateCartItem(_id, 1);
             }
         }
     }
@@ -65,13 +64,12 @@ class BookItem extends Component{
                 <p>{item.description}</p>
                 <h6>$. {item.price}</h6>
                 <Button bsStyle="primary"
-                    onClick={this.handleCart.bind(this, item.id)}
+                    onClick={this.handleCart.bind(this, item._id)}
                 >Buy now
                 </Button>
             </Well>
         )
     }
-    
 }
 
 const mapStateToProps = state => ({

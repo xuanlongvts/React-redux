@@ -61,14 +61,14 @@ class Cart extends Component{
                     <Col xs={12} sm={4}>
                         <ButtonGroup style={{ minWidth: '300px' }}>
                             <Button bsStyle="default" bsSize="small"
-                                onClick={this.decrementQuantityCartItem.bind(this, item.id, item.quantity)}
+                                onClick={this.decrementQuantityCartItem.bind(this, item._id, item.quantity)}
                             > - </Button>
                             <Button bsStyle="default" bsSize="small"
-                                onClick={this.incrementQuantityCartItem.bind(this, item.id, item.quantity, item.maxBuy)}    
+                                onClick={this.incrementQuantityCartItem.bind(this, item._id, item.quantity, item.maxBuy)}    
                             > + </Button>
                             <span> </span>
                             <Button bsStyle="danger" bsSize="small"
-                                onClick={this.handleDeleteCart.bind(this, item.id)}
+                                onClick={this.handleDeleteCart.bind(this, item._id)}
                             > DELETE </Button>
                         </ButtonGroup>
                     </Col>

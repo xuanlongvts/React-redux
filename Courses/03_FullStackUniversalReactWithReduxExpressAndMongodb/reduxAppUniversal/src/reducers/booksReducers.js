@@ -1,34 +1,15 @@
 'use strict';
 
 var INIT_STATE = {
-    books: [
-        {
-            id: 1,
-            title: 'This is the book title 1',
-            description: 'Descripton book 1',
-            price: 100
-        },
-        {
-            id: 2,
-            title: 'This is the book title 2',
-            description: 'Descripton book 2',
-            price: 500
-        },
-        {
-            id: 3,
-            title: 'This is the book title 3',
-            description: 'Descripton book 3',
-            price: 900
-        }
-    ]
+    books: []
 };
 
 export function booksReducers(state = INIT_STATE, action) {
     switch (action.type) {
-        case 'GET_BOOK':
+        case 'GET_BOOK':  
             return {
                 ...state,
-                books: [...state.books]
+                books: [...action.payload]
             }    
         case 'POST_BOOK':
             return {
@@ -42,7 +23,7 @@ export function booksReducers(state = INIT_STATE, action) {
             const currentBookToDelete = state.books;
             const indexToDelete = currentBookToDelete.findIndex(
                 function (book) {
-                    return book.id === action.payload;
+                    return book._id === action.payload;
                 }
             );
             return {
@@ -57,7 +38,7 @@ export function booksReducers(state = INIT_STATE, action) {
             const currentBookToUpdate = state.books;
             const indexToUpdate = currentBookToUpdate.findIndex(
                 function (book) {
-                    return book.id === action.payload;
+                    return book._id === action.payload;
                 }
             );
             const newBookToUpdate = {

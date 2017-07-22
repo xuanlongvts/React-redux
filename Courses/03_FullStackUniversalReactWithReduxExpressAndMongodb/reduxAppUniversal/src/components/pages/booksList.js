@@ -2,18 +2,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getBooks } from '../../actions/booksActions';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 
+import { getBooks } from '../../actions/booksActions';
 import BookItem from './bookItem';
 import BooksForm from './booksForm';
 import Cart from './cart';
 
 class BooksList extends Component{
 
-    componentDidMount() {
-        const { getBooks } = this.props;
-        getBooks();
+    constructor(props) {
+        super(props);
+
+        this.props.getBooks();
     }
 
     render() {
@@ -46,8 +47,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
-        getBooks: getBooks
+        getBooks
     }, dispatch)
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(BooksList);
+export default connect(
+    mapStateToProps, mapDispatchToProps
+)(BooksList);

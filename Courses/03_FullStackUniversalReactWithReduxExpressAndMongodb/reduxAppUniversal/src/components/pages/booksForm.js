@@ -31,14 +31,14 @@ class BooksForm extends Component{
 
     onDeleteBook() {
         let bookId = findDOMNode(this.refs.delete).value;
-        this.props.deleteBooks(parseInt(bookId));
+        this.props.deleteBooks(bookId);
     }
 
     render() {
         const { books } = this.props;
         const booksList = books.map((item, key) => (
             <option key={key}>
-                {item.id}
+                {item._id}
             </option>
         ));
         return (
