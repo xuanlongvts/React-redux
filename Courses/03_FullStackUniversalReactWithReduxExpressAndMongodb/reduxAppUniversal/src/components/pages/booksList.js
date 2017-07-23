@@ -31,9 +31,6 @@ class BooksList extends Component{
                     <Cart />
                 </Row>
                 <Row>
-                    {/* <Col xs={12} sm={6} md={4}>
-                        <BooksForm />    
-                    </Col> */}
                     {books && booksList}
                 </Row>
             </Grid>

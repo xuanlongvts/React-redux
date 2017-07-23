@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Row, Well, Button } from 'react-bootstrap';
+import { Row, Well, Col, Button, Image } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addToCart, updateCartItem } from '../../actions/cartActions';
@@ -16,7 +16,7 @@ class BookItem extends Component{
 
     handleCart(_idProduct) {
         const {
-            item: { _id, title, description, price },
+            item: { _id, title, description, price, images },
             cart
         } = this.props;
 
@@ -25,6 +25,7 @@ class BookItem extends Component{
                 _id,
                 title,
                 description,
+                images,
                 price,
                 quantity: 1,
                 maxBuy: 10
@@ -61,13 +62,20 @@ class BookItem extends Component{
         const { item } = this.props;
         return (
             <Well className="each-item">
-                <h6>{item.title}</h6>
-                <p>{item.description}</p>
-                <h6>$. {item.price}</h6>
-                <Button bsStyle="primary"
-                    onClick={this.handleCart.bind(this, item._id)}
-                >Buy now
-                </Button>
+                <Row>
+                    <Col xs={12} sm={4}>
+                        <Image src={item.images} responsive />    
+                    </Col>
+                    <Col xs={12} sm={4}>
+                        <h6>{item.title}</h6>
+                        <p>{item.description}</p>
+                        <h6>$. {item.price}</h6>
+                        <Button bsStyle="primary"
+                            onClick={this.handleCart.bind(this, item._id)}
+                        >Buy now
+                        </Button>
+                    </Col>
+                </Row>    
             </Well>
         )
     }

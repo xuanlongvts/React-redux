@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-    Panel, Col, Row, Well, Button, Label, ButtonGroup
+    Grid, Panel, Col, Row, Well, Button, Label, ButtonGroup
 } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import {
@@ -80,19 +80,21 @@ class Cart extends Component{
         ));
 
         return (
-            <Panel header="Cart" bsStyle="primary">
-                {cartItemsList}
-                <Row>
-                    <Col xs={12}>
-                        <h6 className="totalAmount"><span>Total amount:</span> $. <strong>{addDots(totalAmount)}</strong></h6>
-                        <Button bsStyle="success" bsSize="small" onClick={this.openModal}>
-                            PROCEED TO CHECKOUT
-                        </Button>
-                    </Col>
-                </Row>
+            <Grid>
+                <Panel header="Cart" bsStyle="primary">
+                    {cartItemsList}
+                    <Row>
+                        <Col xs={12}>
+                            <h6 className="totalAmount"><span>Total amount:</span> $. <strong>{addDots(totalAmount)}</strong></h6>
+                            <Button bsStyle="success" bsSize="small" onClick={this.openModal}>
+                                PROCEED TO CHECKOUT
+                            </Button>
+                        </Col>
+                    </Row>
 
-                <ModalBox onShow={this.state.isOpenModal} onClose={this.openModal} />
-            </Panel>
+                    <ModalBox onShow={this.state.isOpenModal} onClose={this.openModal} />
+                </Panel>
+            </Grid>    
         )
     }
 }
