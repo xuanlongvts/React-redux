@@ -6,7 +6,9 @@ import {
     Panel, Col, Row, Well, Button, Label, ButtonGroup
 } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
-import { deleteCartItem, updateCartItem } from '../../actions/cartActions';
+import {
+    deleteCartItem, updateCartItem, getCart
+} from '../../actions/cartActions';
 import ModalBox from '../common/ModalBox';
 import { addDots } from '../common/function/addDotToNumber';
 
@@ -18,6 +20,7 @@ class Cart extends Component{
         this.state = {
             isOpenModal: false
         }
+        this.props.getCart();
 
         this.openModal = this.openModal.bind(this);
     }
@@ -29,15 +32,15 @@ class Cart extends Component{
     }
     
     handleDeleteCart(idCart) {
-        this.props.deleteCartItem(idCart);
+        this.props.deleteCartItem(idCart, this.props.cart);
     }
 
     incrementQuantityCartItem(id, quantity, maxBuy) {
-        quantity >= maxBuy ? false : this.props.updateCartItem(id, 1);
+        quantity >= maxBuy ? false : this.props.updateCartItem(id, 1, this.props.cart);
     }
 
     decrementQuantityCartItem(id, quantity) {
-        quantity < 2 ? false : this.props.updateCartItem(id, -1);
+        quantity < 2 ? false : this.props.updateCartItem(id, -1, this.props.cart);
     }
 
     render() {
@@ -102,7 +105,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
         deleteCartItem,
-        updateCartItem
+        updateCartItem,
+        getCart
     }, dispatch)
 )
 

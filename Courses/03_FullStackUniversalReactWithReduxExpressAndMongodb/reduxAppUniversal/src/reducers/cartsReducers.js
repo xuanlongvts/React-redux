@@ -6,57 +6,33 @@ const INIT_STATE = {
 
 export function cartsReducers(state = INIT_STATE, action) {
     switch (action.type) {
-        case 'ADD_TO_CART':
-            let newCartAdd = [
-                ...action.payload,
-                ...state.cart
-            ];
+        case 'GET_CART':
             return {
                 ...state,
-                cart: newCartAdd,
-                totalAmount: totalMoney(newCartAdd).amount,
-                totalQuantity: totalMoney(newCartAdd).totalQuantity
+                cart: action.payload,
+                totalAmount: totalMoney(action.payload).amount,
+                totalQuantity: totalMoney(action.payload).totalQuantity
+            }    
+        case 'ADD_TO_CART':
+            return {
+                ...state,
+                cart: action.payload,
+                totalAmount: totalMoney(action.payload).amount,
+                totalQuantity: totalMoney(action.payload).totalQuantity
             }
         case 'DELETE_CART_ITEM':
-            const currentCartToDelete = state.cart;
-            const indexToDelete = currentCartToDelete.findIndex(
-                cart => {
-                    return cart._id === action.payload
-                }
-            );
-            let newCartDelete = [
-                ...currentCartToDelete.slice(0, indexToDelete),
-                ...currentCartToDelete.slice(indexToDelete + 1)
-            ];
             return {
                 ...state,
-                cart: newCartDelete,
-                totalAmount: totalMoney(newCartDelete).amount,
-                totalQuantity: totalMoney(newCartDelete).totalQuantity
+                cart: action.payload,
+                totalAmount: totalMoney(action.payload).amount,
+                totalQuantity: totalMoney(action.payload).totalQuantity
             };
         case 'UPDATE_CART_ITEM':
-            const { id, unit } = action;
-            const currentCartToUpdate = state.cart;
-            const indexToUpdate = currentCartToUpdate.findIndex(
-                cart => {
-                    return cart._id === id
-                }
-            );
-            
-            const newCartToUpdate = {
-                ...currentCartToUpdate[indexToUpdate],
-                quantity: currentCartToUpdate[indexToUpdate].quantity + unit
-            };
-            let newCartUpdate = [
-                ...currentCartToUpdate.slice(0, indexToUpdate),
-                newCartToUpdate,
-                ...currentCartToUpdate.slice(indexToUpdate + 1)
-            ];
             return {
                 ...state,
-                cart: newCartUpdate,
-                totalAmount: totalMoney(newCartUpdate).amount,
-                totalQuantity: totalMoney(newCartUpdate).totalQuantity
+                cart: action.payload,
+                totalAmount: totalMoney(action.payload).amount,
+                totalQuantity: totalMoney(action.payload).totalQuantity
             }
         default:
             return state;

@@ -28,7 +28,8 @@ class BookItem extends Component{
                 price,
                 quantity: 1,
                 maxBuy: 10
-            }
+            },
+            ...cart
         ];
 
         if (cart.length < 1) {
@@ -51,7 +52,7 @@ class BookItem extends Component{
                 this.props.addToCart(book);
             }
             else {
-                quantity >= maxBuy ? false : this.props.updateCartItem(_id, 1);
+                quantity >= maxBuy ? false : this.props.updateCartItem(_id, 1, cart);
             }
         }
     }
