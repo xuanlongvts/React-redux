@@ -14,6 +14,10 @@ import {
     postBooks, deleteBooks, getBooks
 } from '../../actions/booksActions';
 
+import {
+    getCart
+} from '../../actions/cartActions';
+
 class BooksForm extends Component{
 
     constructor(props) {
@@ -23,6 +27,7 @@ class BooksForm extends Component{
             images: [{}],
             img: ''
         }
+        this.props.getCart();
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onDeleteBook = this.onDeleteBook.bind(this);
@@ -62,10 +67,10 @@ class BooksForm extends Component{
 
     handleSubmit() {
         const book = [{
-            title: findDOMNode(this.refs.title).value,
-            description: findDOMNode(this.refs.description).value,
-            images: findDOMNode(this.refs.image).value,
-            price: findDOMNode(this.refs.price).value
+            title: findDOMNode(this.refs.title).value.trim(),
+            description: findDOMNode(this.refs.description).value.trim(),
+            images: findDOMNode(this.refs.image).value.trim(),
+            price: findDOMNode(this.refs.price).value.trim()
         }];
 
         this.props.postBooks(book);
@@ -103,17 +108,28 @@ class BooksForm extends Component{
                     <Row>
                         <Col xs={12} sm={6}>
                             <Panel>
-                                <InputGroup>
-                                    <FormControl type="text" ref="image" value={this.state.img} />
-                                    <DropdownButton
-                                    componentClass={InputGroup.Button}
-                                    id="input-dropdown-addon"
-                                    title="Select an image"
-                                    bsStyle="primary"    
-                                    >
-                                        {imagesList}
-                                    </DropdownButton>
-                                </InputGroup>
+                                <FormGroup
+                                    controlId="image"
+                                    validationState={null}
+                                >
+                                    <InputGroup>
+                                        <FormControl
+                                            type="text"
+                                            ref="image"
+                                            disabled
+                                            value={this.state.img}
+                                        />
+                                        <DropdownButton
+                                            componentClass={InputGroup.Button}
+                                            id="input-dropdown-addon"
+                                            title="Select an image"
+                                            bsStyle="primary"    
+                                        >
+                                            {imagesList}
+                                        </DropdownButton>
+                                    </InputGroup>
+                                    
+                                </FormGroup>
                                 <Image src={this.state.img} responsive />
                             </Panel>    
                         </Col>
@@ -125,8 +141,7 @@ class BooksForm extends Component{
                                         type="text"
                                         placeholder="Enter title"
                                         ref="title"
-                                    >
-                                    </FormControl>
+                                    />
                                 </FormGroup>
 
                                 <FormGroup controlId="description">
@@ -135,8 +150,7 @@ class BooksForm extends Component{
                                         type="text"
                                         placeholder="Enter Description"
                                         ref="description"
-                                    >
-                                    </FormControl>
+                                    />
                                 </FormGroup>
 
                                 <FormGroup controlId="price">
@@ -145,8 +159,7 @@ class BooksForm extends Component{
                                         type="text"
                                         placeholder="Enter Price"
                                         ref="price"
-                                    >
-                                    </FormControl>
+                                    />
                                 </FormGroup>
                                 <Button onClick={this.handleSubmit} bsStyle="primary">
                                     Save book
@@ -174,14 +187,15 @@ class BooksForm extends Component{
 }
 
 const mapStateToProps = state => ({
-    books: state.books.books
+    books: state.books.books,
 })
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
         postBooks,
         deleteBooks,
-        getBooks
+        getBooks,
+        getCart
     }, dispatch)
 )
 

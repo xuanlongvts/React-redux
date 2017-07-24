@@ -11,7 +11,17 @@ class BookItem extends Component{
     constructor(props) {
         super(props);
 
+        this.state = {
+            readMore: false
+        }
+
         this.handleCart = this.handleCart.bind(this);
+    }
+
+    onReadMore() {
+        this.setState({
+            readMore: true
+        })
     }
 
     handleCart(_idProduct) {
@@ -60,15 +70,26 @@ class BookItem extends Component{
 
     render() {
         const { item } = this.props;
+        const { readMore } = this.state;
         return (
             <Well className="each-item">
                 <Row>
                     <Col xs={12} sm={4}>
                         <Image src={item.images} responsive />    
                     </Col>
-                    <Col xs={12} sm={4}>
-                        <h6>{item.title}</h6>
-                        <p>{item.description}</p>
+                    <Col xs={12} sm={8}>
+                        <h6 style={{marginTop: 0}}>{item.title}</h6>
+                        <p>
+                            {(item.description.length > 50 && !readMore) ? (item.description.substring(0, 50)) : (item.description)}
+                            {
+                                item.description !== null && item.description.length > 50 && !readMore && (
+                                    <Button onClick={this.onReadMore.bind(this)} className="read-more">
+                                        ...Read More
+                                    </Button>
+                                )
+                            }
+                            
+                        </p>
                         <h6>$. {item.price}</h6>
                         <Button bsStyle="primary"
                             onClick={this.handleCart.bind(this, item._id)}

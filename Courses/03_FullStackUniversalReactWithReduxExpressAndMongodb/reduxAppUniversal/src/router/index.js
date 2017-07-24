@@ -20,7 +20,7 @@ const RoutesApp = (
                 <Switch>
                     <Route exact path="/" component={BooksList} />
                     <Route path="/admin" component={BooksForm} />
-                    <Route path="/cart" component={Cart} />
+                    <Route path="/yourcart" component={Cart} />
                 </Switch>
                 <Footer />
             </div>   
