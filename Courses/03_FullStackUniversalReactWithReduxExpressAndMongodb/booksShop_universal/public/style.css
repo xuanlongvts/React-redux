@@ -30,3 +30,10 @@ body{
     outline-offset: 0;
     color: #fff;
 }
+
+.not-found{
+    margin: 20px 0;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
