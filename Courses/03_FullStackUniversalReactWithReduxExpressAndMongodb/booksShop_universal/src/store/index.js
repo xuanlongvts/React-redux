@@ -7,6 +7,6 @@ import thunk from 'redux-thunk';
 import reducers from '../reducers/index';
 
 const middleware = applyMiddleware(thunk, createLogger());
-const store = createStore(reducers, middleware);
+const store = createStore(reducers, window.INITIAL_STATE, middleware);
 
 export default store;
