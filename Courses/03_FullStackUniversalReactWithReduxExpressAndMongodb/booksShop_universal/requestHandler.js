@@ -24,14 +24,13 @@ function handleRender(req, res) {
                 routes: RoutesApp,
                 location: req.url
             }
-
             match(Routes, function (error, redirect, props) {
                 if (error) {
                     res.status(500).send("Error fullfilling the request");
                 } else if (redirect) {
                     res.status(302, redirect.pathname + redirect.search)
                 } else if (props) {
-                    const reactComponent = renderToString(
+                    const reactComponent = () => renderToString(
                         <Provider store={store}>
                             <RouterContext {...props} />
                         </Provider>
