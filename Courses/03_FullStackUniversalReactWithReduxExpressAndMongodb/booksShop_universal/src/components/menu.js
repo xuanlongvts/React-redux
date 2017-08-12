@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, Navbar, Badge } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class Menu extends Component{
     
@@ -19,14 +20,22 @@ class Menu extends Component{
 
                 <Navbar.Collapse>
                     <Nav>
-                        <NavItem eventKey={1} href="/about">About</NavItem>
-                        <NavItem eventKey={2} href="/contacts">Contact Us</NavItem>
+                        <LinkContainer to="/about">
+                            <NavItem eventKey={1}>About</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/contacts">
+                            <NavItem eventKey={2}>Contact Us</NavItem>
+                        </LinkContainer>
                     </Nav>
                     <Nav pullRight>
-                        <NavItem eventKey={1} href="/admin">Admin</NavItem>
-                        <NavItem eventKey={2} href="/yourcart">
+                    <LinkContainer to="/admin">
+                        <NavItem eventKey={3}>Admin</NavItem>
+                    </LinkContainer>     
+                    <LinkContainer to="/yourcart">
+                        <NavItem eventKey={4}>
                             Your cart {totalQuantity && (<Badge className="badge">{totalQuantity}</Badge>)}
                         </NavItem>
+                    </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>    
             </Navbar>
