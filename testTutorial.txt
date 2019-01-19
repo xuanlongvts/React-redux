@@ -1,0 +1,7 @@
+React test tutorial
+
+1. What is the unit under test? (module, function, class, Whatever)
+2. What should it do? (Prose description)
+3. What was the actual output?
+4. What was the expected output?
+5. How do you reproduce the failure?
